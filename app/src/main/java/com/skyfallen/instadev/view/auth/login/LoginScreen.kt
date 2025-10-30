@@ -19,21 +19,20 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.skyfallen.instadev.R
 
 @Preview
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier) {
-    var textValue by remember { mutableStateOf("") }
+fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
+    val uiState by loginViewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold { padding ->
         Column(
@@ -45,22 +44,22 @@ fun LoginScreen(modifier: Modifier = Modifier) {
             Image(
                 painter = painterResource(R.drawable.instadev_logo),
                 contentDescription = "Instadev logo login",
-                modifier = modifier.size(72.dp)
+                modifier = Modifier .size(72.dp)
             )
             Spacer(Modifier.weight(1f))
 
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = textValue,
-                onValueChange = { value -> textValue = value },
+                value = uiState.email,
+                onValueChange = { email -> loginViewModel.onEmailChanged(email) },
                 label = { Text("Usuario, correo electrónico o móvil") },
                 shape = RoundedCornerShape(25)
             )
 
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = textValue,
-                onValueChange = { value -> textValue = value },
+                value = uiState.password,
+                onValueChange = { pass -> loginViewModel.onPasswordChanged(pass) },
                 label = { Text("Contraseña") },
                 shape = RoundedCornerShape(25)
             )
@@ -68,7 +67,8 @@ fun LoginScreen(modifier: Modifier = Modifier) {
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
-                onClick = {}) {
+                onClick = {},
+                enabled = uiState.isLoginEnabled) {
                 Text("Iniciar sesión")
             }
             Spacer(Modifier.height(12.dp))
@@ -84,6 +84,5 @@ fun LoginScreen(modifier: Modifier = Modifier) {
             )
         }
     }
-
 
 }
