@@ -25,6 +25,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -48,7 +49,8 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
             Text(
                 text = "Español (España)",
                 modifier = Modifier.padding(24.dp),
-                color = MaterialTheme.colorScheme.onBackground
+                color = MaterialTheme.colorScheme.onBackground,
+                style = MaterialTheme.typography.bodyLarge
             )
             Spacer(Modifier.weight(1f))
             Image(
@@ -84,7 +86,11 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
                 Text("Iniciar sesión", color = MaterialTheme.colorScheme.onPrimary)
             }
             Spacer(Modifier.height(12.dp))
-            Text("¿Has olvidado la contraseña?", color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(
+                "¿Has olvidado la contraseña?",
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center
+            )
             Spacer(Modifier.weight(1f))
 
             OutlinedButton(
