@@ -1,4 +1,4 @@
-package com.skyfallen.instadev.view.auth.login
+package com.skyfallen.instadev.ui.auth.login
 
 import android.util.Patterns
 import androidx.lifecycle.ViewModel

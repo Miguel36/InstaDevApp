@@ -1,11 +1,10 @@
-package com.skyfallen.instadev.core.navigation
+package com.skyfallen.instadev.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.skyfallen.instadev.view.auth.login.LoginScreen
+import com.skyfallen.instadev.ui.auth.login.LoginScreen
 
 @Composable
 fun NavigationWrapper() {

@@ -1,4 +1,4 @@
-package com.skyfallen.instadev.core.navigation
+package com.skyfallen.instadev.ui.navigation
 
 import kotlinx.serialization.Serializable
 

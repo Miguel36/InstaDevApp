@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.skyfallen.instadev.core.navigation.NavigationWrapper
+import com.skyfallen.instadev.ui.navigation.NavigationWrapper
 import com.skyfallen.instadev.ui.theme.InstaDevTheme
 
 class MainActivity : ComponentActivity() {
