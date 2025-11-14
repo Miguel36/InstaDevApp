@@ -4,6 +4,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
@@ -17,7 +18,7 @@ import androidx.compose.ui.graphics.Shape
 fun InstaButton(
     modifier: Modifier = Modifier,
     colors: ButtonColors = ButtonDefaults.buttonColors(
-        containerColor = MaterialTheme.colorScheme.primary
+        containerColor = MaterialTheme.colorScheme.secondary
     ),
     onClick: () -> Unit,
     enabled: Boolean = true,
@@ -32,5 +33,49 @@ fun InstaButton(
         shape = shape
     ) {
         InstaText(text = text, color = MaterialTheme.colorScheme.onPrimary)
+    }
+}
+
+@Composable
+fun InstaButtonSecondary(
+    modifier: Modifier = Modifier,
+    colors: ButtonColors = ButtonDefaults.buttonColors(
+        containerColor = MaterialTheme.colorScheme.secondary
+    ),
+    onClick: () -> Unit,
+    enabled: Boolean = true,
+    shape: Shape = MaterialTheme.shapes.extraLarge,
+    text: String
+) {
+    Button(
+        modifier = modifier,
+        onClick = onClick,
+        enabled = enabled,
+        colors = colors,
+        shape = shape
+    ) {
+        Text(text = text, color = MaterialTheme.colorScheme.onSecondary)
+    }
+}
+
+@Composable
+fun InstaButtonTertiary(
+    modifier: Modifier = Modifier,
+    colors: ButtonColors = ButtonDefaults.buttonColors(
+        containerColor = MaterialTheme.colorScheme.tertiary
+    ),
+    onClick: () -> Unit,
+    enabled: Boolean = true,
+    shape: Shape = MaterialTheme.shapes.extraLarge,
+    text: String
+) {
+    Button(
+        modifier = modifier,
+        onClick = onClick,
+        enabled = enabled,
+        colors = colors,
+        shape = shape
+    ) {
+        Text(text = text, color = MaterialTheme.colorScheme.onTertiary)
     }
 }
