@@ -24,8 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -33,9 +31,8 @@ import com.skyfallen.instadev.R
 import com.skyfallen.instadev.ui.components.InstaButton
 import com.skyfallen.instadev.ui.components.InstaText
 
-@Preview
 @Composable
-fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
+fun LoginScreen(navigateToRegister: () -> Unit, loginViewModel: LoginViewModel = viewModel()) {
     val uiState by loginViewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold { padding ->
@@ -86,14 +83,13 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
             Spacer(Modifier.height(12.dp))
             InstaText(
                 text = stringResource(R.string.login_text_forgot_password),
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Spacer(Modifier.weight(1f))
 
             OutlinedButton(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = {},
+                onClick = { navigateToRegister() },
                 colors = ButtonDefaults.outlinedButtonColors(),
                 border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
             ) {

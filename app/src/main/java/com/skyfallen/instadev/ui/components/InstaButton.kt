@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.Shape
 fun InstaButton(
     modifier: Modifier = Modifier,
     colors: ButtonColors = ButtonDefaults.buttonColors(
-        containerColor = MaterialTheme.colorScheme.secondary
+        containerColor = MaterialTheme.colorScheme.primary
     ),
     onClick: () -> Unit,
     enabled: Boolean = true,

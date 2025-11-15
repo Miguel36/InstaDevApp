@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.skyfallen.instadev.ui.auth.login.LoginScreen
+import com.skyfallen.instadev.ui.auth.register.RegisterScreen
 
 @Composable
 fun NavigationWrapper() {
@@ -12,7 +13,11 @@ fun NavigationWrapper() {
 
     NavHost(navController = navController, startDestination = Login) {
         composable<Login> {
-            LoginScreen()
+            LoginScreen(navigateToRegister = { navController.navigate(Register) })
+        }
+
+        composable<Register> {
+            RegisterScreen()
         }
     }
 }

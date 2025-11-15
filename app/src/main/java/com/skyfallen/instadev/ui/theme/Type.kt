@@ -22,9 +22,9 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     ),
     displayLarge = TextStyle(
+        fontSize = 36.sp,
         fontFamily = loraFamily,
-        fontWeight = FontWeight.Light,
-        fontSize = 36.sp
+        fontWeight = FontWeight.Light
     )
     /* Other default text styles to override
     titleLarge = TextStyle(
