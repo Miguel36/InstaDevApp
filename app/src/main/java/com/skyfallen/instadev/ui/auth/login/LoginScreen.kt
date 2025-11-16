@@ -32,7 +32,7 @@ import com.skyfallen.instadev.ui.components.InstaButton
 import com.skyfallen.instadev.ui.components.InstaText
 
 @Composable
-fun LoginScreen(navigateToRegister: () -> Unit, loginViewModel: LoginViewModel = viewModel()) {
+fun LoginScreen(loginViewModel: LoginViewModel = viewModel(), navigateToRegister: () -> Unit) {
     val uiState by loginViewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold { padding ->

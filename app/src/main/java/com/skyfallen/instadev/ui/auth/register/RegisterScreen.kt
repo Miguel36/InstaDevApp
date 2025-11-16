@@ -7,22 +7,28 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.skyfallen.instadev.R
 import com.skyfallen.instadev.ui.components.InstaButton
 import com.skyfallen.instadev.ui.components.InstaText
 
 @Composable
-fun RegisterScreen() {
+fun RegisterScreen(registerViewModel: RegisterViewModel = RegisterViewModel()) {
+    val uiState by registerViewModel.uiState.collectAsStateWithLifecycle()
+
     Scaffold { paddingValues ->
         Column(
             modifier = Modifier
@@ -45,9 +51,10 @@ fun RegisterScreen() {
             Spacer(Modifier.height(16.dp))
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = "",
-                onValueChange = {},
-                label = { InstaText(text = stringResource(R.string.register_textfield_mobile_number)) }
+                value = uiState.cellphone,
+                onValueChange = { registerViewModel.onCellPhoneChanged(it) },
+                label = { InstaText(text = stringResource(R.string.register_textfield_mobile_number)) },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
             )
             Spacer(Modifier.height(8.dp))
             InstaText(
@@ -58,7 +65,8 @@ fun RegisterScreen() {
             InstaButton(
                 modifier = Modifier.fillMaxWidth(),
                 text = stringResource(R.string.register_btn_next),
-                onClick = {}
+                onClick = {},
+                enabled = uiState.isRegisterEnabled
             )
             Spacer(Modifier.height(4.dp))
             OutlinedButton(
