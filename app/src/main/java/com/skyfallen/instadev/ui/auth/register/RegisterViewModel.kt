@@ -13,7 +13,7 @@ class RegisterViewModel : ViewModel() {
 
     fun onCellPhoneChanged(phoneNumber: String) {
         _uiState.update {
-            it.copy(cellphone = phoneNumber)
+            it.copy(textFieldValue = phoneNumber)
         }
         validateRegister()
     }
@@ -23,11 +23,18 @@ class RegisterViewModel : ViewModel() {
         _uiState.update { it.copy(isRegisterEnabled = isValid) }
     }
 
-    private fun isCellPhoneValid(): Boolean = Patterns.PHONE.matcher(uiState.value.cellphone)
-        .matches() && uiState.value.cellphone.length == 10
+    private fun isCellPhoneValid(): Boolean = Patterns.PHONE.matcher(_uiState.value.textFieldValue)
+        .matches() && _uiState.value.textFieldValue.length == 10
+
+    fun onChangeRegisterType() {
+        _uiState.update {
+            it.copy(isRegisterWithNumber = !_uiState.value.isRegisterWithNumber, textFieldValue = "")
+        }
+    }
 }
 
 data class RegisterUiState(
-    val cellphone: String = "",
-    val isRegisterEnabled: Boolean = false
+    val textFieldValue: String = "",
+    val isRegisterEnabled: Boolean = false,
+    val isRegisterWithNumber: Boolean = true
 )

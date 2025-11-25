@@ -25,7 +25,7 @@ class LoginViewModel : ViewModel() {
     }
 
     private fun validateLogin() {
-        val isValid = isEmailValid(uiState.value.email) && isPassValid(uiState.value.password)
+        val isValid = isEmailValid(_uiState.value.email) && isPassValid(_uiState.value.password)
         _uiState.update { it.copy(isLoginEnabled = isValid) }
     }
 

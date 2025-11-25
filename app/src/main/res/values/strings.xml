@@ -15,7 +15,13 @@
     <string name="register_textfield_mobile_number">Número de móvil</string>
     <string name="register_text_it_can_be_that_you_receive_notifications">Puede que recibas notificaciones nuestras en WhatsApp y por SMS por motivos de seguridad y para iniciar sesión.</string>
     <string name="register_btn_next">Siguiente</string>
-    <string name="register_btn_register_with_you_email">Registrarte con tu correo electrónico</string>
+    <string name="register_btn_register_with_your_email">Registrate con tu correo electrónico</string>
     <string name="register_text_link_search_my_account">Buscar mi cuenta</string>
+
+    <string name="register_header_whats_your_email">¿Cuál es tu correo electrónico?</string>
+    <string name="register_text_input_your_email">"Introduce tú correo de electrónico de contacto. Nadie lo verá en tú perfil."</string>
+    <string name="register_textfield_email">Correo electrónico</string>
+    <string name="register_text_you_will_receive_emails">También te enviaremos correos electrónicos. Puedes cancelar esta opción cuando quieras. Más información</string>
+    <string name="register_btn_register_with_your_cellphone">Registrate con tu número de móvil</string>
 
 </resources>
