@@ -28,7 +28,7 @@ class RegisterViewModel : ViewModel() {
 
     fun onChangeRegisterType() {
         _uiState.update {
-            it.copy(isRegisterWithNumber = !_uiState.value.isRegisterWithNumber, textFieldValue = "")
+            it.copy(isRegisterWithNumber = !_uiState.value.isRegisterWithNumber, textFieldValue = "", isRegisterEnabled = false)
         }
     }
 }
