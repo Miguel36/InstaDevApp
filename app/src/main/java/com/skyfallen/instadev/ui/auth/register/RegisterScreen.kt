@@ -1,5 +1,6 @@
 package com.skyfallen.instadev.ui.auth.register
 
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -26,14 +27,37 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.skyfallen.instadev.R
 import com.skyfallen.instadev.ui.components.InstaButton
 import com.skyfallen.instadev.ui.components.InstaText
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterScreen(registerViewModel: RegisterViewModel = RegisterViewModel()) {
+fun RegisterScreen(registerViewModel: RegisterViewModel = viewModel()) {
     val uiState by registerViewModel.uiState.collectAsStateWithLifecycle()
+    val title: String
+    val subTitle: String
+    val textFieldLabel: String
+    val textInfo: String
+    val registerButtonText: String
+
+    when (uiState.isRegisterWithNumber) {
+        true -> {
+            title = stringResource(R.string.register_header_whats_your_number)
+            subTitle = stringResource(R.string.register_text_input_your_contact_number)
+            textFieldLabel = stringResource(R.string.register_textfield_mobile_number)
+            textInfo = stringResource(R.string.register_text_it_can_be_that_you_receive_notifications)
+            registerButtonText = stringResource(R.string.register_btn_register_with_your_email)
+        }
+        false -> {
+            title = stringResource(R.string.register_header_whats_your_email)
+            subTitle = stringResource(R.string.register_text_input_your_email)
+            textFieldLabel = stringResource(R.string.register_textfield_email)
+            textInfo = stringResource(R.string.register_text_you_will_receive_emails)
+            registerButtonText = stringResource(R.string.register_btn_register_with_your_cellphone)
+        }
+    }
 
     Scaffold(topBar = {
         TopAppBar(
@@ -57,16 +81,17 @@ fun RegisterScreen(registerViewModel: RegisterViewModel = RegisterViewModel()) {
                 .background(MaterialTheme.colorScheme.background),
             horizontalAlignment = Alignment.Start
         ) {
-            InstaText(
-                text = if (uiState.isRegisterWithNumber) stringResource(R.string.register_header_whats_your_number)
-                else stringResource(R.string.register_header_whats_your_email),
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                style = MaterialTheme.typography.headlineLarge
-            )
+            AnimatedContent(title) { animatedTitle ->
+                InstaText(
+                    text = animatedTitle,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    style = MaterialTheme.typography.headlineLarge
+                )
+            }
+
             Spacer(Modifier.height(8.dp))
             InstaText(
-                text = if (uiState.isRegisterWithNumber) stringResource(R.string.register_text_input_your_contact_number)
-                else stringResource(R.string.register_text_input_your_email),
+                text = subTitle,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Spacer(Modifier.height(16.dp))
@@ -74,20 +99,12 @@ fun RegisterScreen(registerViewModel: RegisterViewModel = RegisterViewModel()) {
                 modifier = Modifier.fillMaxWidth(),
                 value = uiState.textFieldValue,
                 onValueChange = { registerViewModel.onCellPhoneChanged(it) },
-                label = {
-                    InstaText(
-                        text = if (uiState.isRegisterWithNumber) stringResource(R.string.register_textfield_mobile_number) else stringResource(
-                            R.string.register_textfield_email
-                        )
-                    )
-                },
+                label = { InstaText(text = textFieldLabel) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
             )
             Spacer(Modifier.height(8.dp))
             InstaText(
-                text = if (uiState.isRegisterWithNumber) stringResource(R.string.register_text_it_can_be_that_you_receive_notifications) else stringResource(
-                    R.string.register_text_you_will_receive_emails
-                ),
+                text = textInfo,
                 style = MaterialTheme.typography.bodyMedium
             )
             Spacer(Modifier.height(16.dp))
@@ -104,9 +121,7 @@ fun RegisterScreen(registerViewModel: RegisterViewModel = RegisterViewModel()) {
                 border = BorderStroke(1.dp, MaterialTheme.colorScheme.onBackground)
             ) {
                 InstaText(
-                    text = if (uiState.isRegisterWithNumber) stringResource(R.string.register_btn_register_with_your_email) else stringResource(
-                        R.string.register_btn_register_with_your_cellphone
-                    ),
+                    text = registerButtonText,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
