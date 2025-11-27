@@ -16,7 +16,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -30,6 +29,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.skyfallen.instadev.R
 import com.skyfallen.instadev.ui.components.InstaButton
 import com.skyfallen.instadev.ui.components.InstaText
+import com.skyfallen.instadev.ui.components.InstaTextField
 
 @Composable
 fun LoginScreen(loginViewModel: LoginViewModel = viewModel(), navigateToRegister: () -> Unit) {
@@ -56,21 +56,18 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel(), navigateToRegister
             )
             Spacer(Modifier.weight(1f))
 
-            OutlinedTextField(
+            InstaTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = uiState.email,
                 onValueChange = { email -> loginViewModel.onEmailChanged(email) },
-                label = {
-                    InstaText(text = stringResource(R.string.login_textfield_email))
-                },
+                label = stringResource(R.string.login_textfield_email),
                 shape = RoundedCornerShape(25)
             )
-
-            OutlinedTextField(
+            InstaTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = uiState.password,
                 onValueChange = { pass -> loginViewModel.onPasswordChanged(pass) },
-                label = { InstaText(text = stringResource(R.string.login_textfield_password)) },
+                label = stringResource(R.string.login_textfield_password),
                 shape = RoundedCornerShape(25)
             )
             Spacer(Modifier.height(10.dp))

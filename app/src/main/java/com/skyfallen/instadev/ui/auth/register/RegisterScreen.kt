@@ -8,14 +8,12 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -24,13 +22,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.skyfallen.instadev.R
 import com.skyfallen.instadev.ui.components.InstaButton
 import com.skyfallen.instadev.ui.components.InstaText
+import com.skyfallen.instadev.ui.components.InstaTextField
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -95,12 +93,11 @@ fun RegisterScreen(registerViewModel: RegisterViewModel = viewModel()) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Spacer(Modifier.height(16.dp))
-            OutlinedTextField(
+            InstaTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = uiState.textFieldValue,
                 onValueChange = { registerViewModel.onCellPhoneChanged(it) },
-                label = { InstaText(text = textFieldLabel) },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                label = textFieldLabel,
             )
             Spacer(Modifier.height(8.dp))
             InstaText(

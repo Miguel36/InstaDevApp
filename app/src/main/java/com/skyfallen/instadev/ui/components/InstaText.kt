@@ -10,8 +10,8 @@ import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun InstaText(
-    modifier: Modifier = Modifier,
     text: String,
+    modifier: Modifier = Modifier,
     textAlign: TextAlign = TextAlign.Unspecified,
     color: Color = MaterialTheme.colorScheme.onBackground,
     style: TextStyle = MaterialTheme.typography.bodyLarge
