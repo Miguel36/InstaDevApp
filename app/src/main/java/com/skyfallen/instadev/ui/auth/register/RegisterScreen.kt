@@ -96,7 +96,7 @@ fun RegisterScreen(registerViewModel: RegisterViewModel = viewModel()) {
             InstaTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = uiState.textFieldValue,
-                onValueChange = { registerViewModel.onCellPhoneChanged(it) },
+                onValueChange = { registerViewModel.onRegisterChanged(it) },
                 label = textFieldLabel,
             )
             Spacer(Modifier.height(8.dp))
