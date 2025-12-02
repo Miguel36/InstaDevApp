@@ -3,6 +3,7 @@ package com.skyfallen.instadev.ui.auth.register
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,7 +33,7 @@ import com.skyfallen.instadev.ui.components.InstaTextField
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterScreen(registerViewModel: RegisterViewModel = viewModel()) {
+fun RegisterScreen(registerViewModel: RegisterViewModel = viewModel(), navigateBack: () -> Unit) {
     val uiState by registerViewModel.uiState.collectAsStateWithLifecycle()
     val title: String
     val subTitle: String
@@ -64,7 +65,8 @@ fun RegisterScreen(registerViewModel: RegisterViewModel = viewModel()) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = "",
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.clickable { navigateBack() }
                 )
             },
             colors = TopAppBarDefaults.topAppBarColors(

@@ -17,7 +17,7 @@ fun NavigationWrapper() {
         }
 
         composable<Register> {
-            RegisterScreen()
+            RegisterScreen(navigateBack = { navController.popBackStack() })
         }
     }
 }
