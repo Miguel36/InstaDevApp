@@ -1,8 +1,9 @@
 package com.skyfallen.instadev.domain.auth.login.usecase
 
 import com.skyfallen.instadev.domain.auth.login.repository.AuthRepository
+import javax.inject.Inject
 
-class LoginUseCase(private val authRepository: AuthRepository) {
+class LoginUseCase @Inject constructor(private val authRepository: AuthRepository) {
 
     operator fun invoke(user: String, password: String) {
         if (user.contains("@hotmail.com"))

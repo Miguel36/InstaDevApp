@@ -34,6 +34,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
     buildFeatures {
         compose = true
     }
@@ -67,5 +70,6 @@ dependencies {
 
     //DI
     implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation)
     ksp(libs.hilt.compiler)
 }

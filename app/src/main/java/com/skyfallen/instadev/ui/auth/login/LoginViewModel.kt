@@ -4,13 +4,16 @@ import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skyfallen.instadev.domain.auth.login.usecase.LoginUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase) : ViewModel() {
     private val _uiState = MutableStateFlow(LoginUiState())
     val uiState : StateFlow<LoginUiState> = _uiState
 
