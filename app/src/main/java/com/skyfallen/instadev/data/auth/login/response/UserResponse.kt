@@ -2,15 +2,18 @@ package com.skyfallen.instadev.data.auth.login.response
 
 import com.skyfallen.instadev.domain.auth.login.entity.UserEntity
 import com.skyfallen.instadev.domain.auth.login.entity.UserMode
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 // Response model
+@Serializable
 data class UserResponse(
     val userId: String,
     val name: String,
-    val nickName: String,
-    val followers: Int,
+    @SerialName("nickname") val nickName: String,
+    val followers: Int = 0,
     val following: List<String>,
-    val userType: Int
+    @SerialName("usertype") val userType: Int
 )
 
 fun UserResponse.ToDomain(): UserEntity {

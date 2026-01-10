@@ -1,5 +1,6 @@
 package com.skyfallen.instadev.ui.auth.login
 
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -32,7 +33,14 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
 
     fun onClickLogin() {
         viewModelScope.launch {
-            loginUseCase(_uiState.value.email, _uiState.value.password)
+            val response = loginUseCase(_uiState.value.email, _uiState.value.password)
+
+            if (response != null) {
+                Log.i("Login", "Login success ${response.name}")
+            }
+            else {
+                Log.e("Login", "Login error")
+            }
         }
     }
 

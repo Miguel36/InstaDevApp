@@ -73,7 +73,7 @@ fun LoginScreen(loginViewModel: LoginViewModel = hiltViewModel(), navigateToRegi
             Spacer(Modifier.height(10.dp))
             InstaButton(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = {},
+                onClick = { loginViewModel.onClickLogin() },
                 enabled = uiState.isLoginEnabled,
                 text = stringResource(R.string.login_button_login)
             )
